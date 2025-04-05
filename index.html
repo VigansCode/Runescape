@@ -14,25 +14,36 @@
             background-color: #333;
             font-family: 'Arial', sans-serif;
             position: relative;
+            background-image: url('/api/placeholder/800/600');
+            background-size: cover;
+            background-position: center;
         }
         
         .game-container {
             width: 100%;
             height: 100%;
             position: relative;
-            background-color: #222;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .main-interface {
+            width: 90%;
+            max-width: 1200px;
+            height: 85%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
         
         .customization-panel {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(90%, 1200px);
-            height: 80%;
+            flex: 1;
             background-color: #3c3328;
             border: 4px solid #000;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
             border-radius: 8px;
             display: grid;
             grid-template-columns: 1fr 2fr 1fr;
@@ -40,23 +51,30 @@
             gap: 10px;
             padding: 20px;
             z-index: 1;
+            background-image: url('/api/placeholder/800/600');
+            background-blend-mode: overlay;
+            background-size: cover;
         }
         
         .header {
             grid-column: 1 / 4;
             text-align: center;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             color: #ffcc00;
             text-shadow: 2px 2px 2px #000;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-family: 'RuneScape', fantasy;
             letter-spacing: 1px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
         }
         
         .left-panel, .right-panel {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 8px;
         }
         
         .character-preview {
@@ -78,94 +96,145 @@
             color: #ffcc00;
             font-weight: bold;
             text-shadow: 1px 1px 1px #000;
-            font-size: 22px;
+            font-size: 18px;
+            font-family: 'RuneScape', fantasy;
         }
         
         .arrow-btn {
             width: 40px;
             height: 35px;
-            background-color: #333;
-            border: 2px solid #000;
-            color: white;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
             font-weight: bold;
-            font-size: 20px;
-            user-select: none;
+            font-size: 18px;
+            color: white;
+            background-image: url('/api/placeholder/40/35');
+            background-size: cover;
+            background-position: center;
+            text-shadow: 1px 1px 2px black;
         }
         
         .arrow-btn:hover {
-            background-color: #555;
+            filter: brightness(1.2);
         }
         
         .column-header {
             color: white;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 10px;
-            font-size: 24px;
+            margin-bottom: 5px;
+            font-size: 20px;
+            text-shadow: 1px 1px 2px black;
         }
         
         .bottom-panel {
             grid-column: 1 / 4;
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         
         .green-btn {
-            background-color: #006400;
-            color: #00ff00;
-            border: 2px solid #000;
-            padding: 10px 30px;
-            font-weight: bold;
+            width: 120px;
+            height: 40px;
+            position: relative;
             cursor: pointer;
-            text-align: center;
-            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: #0f0;
+            text-shadow: 1px 1px 2px black;
+            background-color: #005500;
+            border: 2px solid #000;
+            border-radius: 5px;
+            box-shadow: 0 3px 0 #002200;
+        }
+        
+        .green-btn:hover {
+            background-color: #006600;
         }
         
         .red-btn {
-            background-color: #8b0000;
-            color: #ff6666;
-            border: 2px solid #000;
-            padding: 10px 30px;
-            font-weight: bold;
+            width: 80px;
+            height: 35px;
+            position: relative;
             cursor: pointer;
-            text-align: center;
-            font-size: 20px;
-            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: #ffcc00;
+            text-shadow: 1px 1px 2px black;
+            background-color: #880000;
+            border: 2px solid #000;
+            border-radius: 5px;
+            box-shadow: 0 3px 0 #440000;
+        }
+        
+        .red-btn:hover {
+            background-color: #990000;
         }
         
         .tan-btn {
-            background-color: #887766;
-            color: white;
-            border: 2px solid #000;
-            padding: 10px 30px;
-            font-weight: bold;
+            width: 80px;
+            height: 35px;
+            position: relative;
             cursor: pointer;
-            text-align: center;
-            font-size: 20px;
-            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: #ffcc00;
+            text-shadow: 1px 1px 2px black;
+            background-color: #887766;
+            border: 2px solid #000;
+            border-radius: 5px;
+            box-shadow: 0 3px 0 #443322;
+        }
+        
+        .tan-btn:hover {
+            background-color: #998877;
         }
         
         .map-container {
             position: absolute;
-            top: 5%;
-            right: 5%;
-            width: 240px;
+            top: 0;
+            right: 0;
+            width: 280px;
             z-index: 2;
         }
         
         .mini-map {
-            width: 200px;
-            height: 200px;
+            width: 240px;
+            height: 240px;
             background-color: #000;
             border: 3px solid #555;
             border-radius: 50%;
             overflow: hidden;
             margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-image: url('/api/placeholder/240/240');
+            background-size: cover;
+            position: relative;
+        }
+        
+        .mini-map::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
         }
         
         .mini-map-content {
@@ -175,32 +244,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('/api/placeholder/200/200');
+            background-image: url('/api/placeholder/240/240');
             background-size: cover;
         }
         
         .stone-frame {
-            width: 240px;
-            height: 400px;
+            width: 280px;
+            height: 480px;
             background-color: #5a5248;
-            border: 20px solid;
-            border-image: url('/api/placeholder/100/100') 30 round;
-            border-radius: 10px;
             margin-top: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-sizing: border-box;
             position: relative;
-            padding-bottom: 40px;
             overflow: hidden;
+            background-image: url('/api/placeholder/280/480');
+            background-size: cover;
+            border: 20px solid;
+            border-image: url('/api/placeholder/100/100') 30 stretch;
+            box-sizing: border-box;
         }
         
         .frame-content {
             flex-grow: 1;
             background-color: #5a4d40;
-            border-radius: 5px;
             margin: 10px;
+            border: 2px solid #333;
+            background-image: url('/api/placeholder/260/400');
+            background-blend-mode: multiply;
+            background-size: cover;
         }
         
         .logout-frame {
@@ -216,31 +288,33 @@
             bottom: 0;
             left: 0;
             right: 0;
+            font-size: 16px;
+            text-shadow: 1px 1px 2px black;
         }
         
         .tutorial-box {
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: min(80%, 800px);
+            margin-top: 20px;
+            width: 90%;
+            max-width: 700px;
             background-color: #f5f5dc;
             border: 3px solid #8b4513;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             font-family: 'Times New Roman', serif;
             color: #000;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             z-index: 2;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-image: url('/api/placeholder/700/150');
+            background-blend-mode: multiply;
+            background-size: cover;
         }
         
         .bottom-bar {
-            position: absolute;
-            bottom: 0;
-            left: 0;
             width: 100%;
-            height: 60px;
+            height: 50px;
             background-color: #333;
             display: flex;
             justify-content: space-between;
@@ -248,298 +322,292 @@
             padding: 0 20px;
             box-sizing: border-box;
             z-index: 2;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-image: url('/api/placeholder/800/50');
+            background-blend-mode: multiply;
+            background-size: cover;
         }
         
         .chat-option {
             display: flex;
             flex-direction: column;
             align-items: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 3px 10px;
+            border-radius: 5px;
         }
         
         .chat-label {
-            font-size: 16px;
+            font-size: 14px;
             margin-bottom: 2px;
+            color: #ddd;
+            text-shadow: 1px 1px 2px black;
         }
         
         .chat-status {
             color: #00ff00;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
+            text-shadow: 1px 1px 2px black;
         }
         
         .logout-btn {
             display: flex;
-            gap: 10px;
+            gap: 5px;
             align-items: center;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
+            color: white;
+            text-shadow: 1px 1px 2px black;
         }
         
-        .character {
+        /* Character model - more detailed */
+        .character-model {
             width: 200px;
             height: 400px;
             position: relative;
-            transform: scale(1.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
-        .character-head {
-            width: 30px;
-            height: 30px;
-            background-color: #ffcc99;
-            border-radius: 15px;
-            position: absolute;
-            top: 0;
-            left: 35px;
+        .character-model img {
+            max-width: 100%;
+            max-height: 100%;
         }
         
-        .character-body {
-            width: 50px;
-            height: 60px;
-            background-color: #ffff00;
-            position: absolute;
-            top: 30px;
-            left: 25px;
+        .character {
+            width: 100px;
+            height: 200px;
+            position: relative;
+            display: none; /* Hide the simple character */
         }
         
-        .character-legs {
-            width: 40px;
-            height: 80px;
-            background-color: #00aa00;
-            position: absolute;
-            top: 90px;
-            left: 30px;
-        }
-        
-        .character-feet {
-            width: 25px;
-            height: 15px;
-            background-color: #663300;
-            position: absolute;
-            top: 170px;
-            left: 37px;
-        }
-        
-        .character-arms {
-            width: 15px;
-            height: 60px;
-            background-color: #ffff00;
-            position: absolute;
-            top: 35px;
-        }
-        
-        .left-arm {
-            left: 10px;
-        }
-        
-        .right-arm {
-            left: 75px;
+        .character-image {
+            width: 150px;
+            height: 300px;
+            background-image: url('/api/placeholder/150/300');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         
         /* Responsive adjustments */
         @media (max-width: 1200px) {
             .feature-label {
-                font-size: 18px;
+                font-size: 16px;
             }
             
             .arrow-btn {
                 width: 35px;
                 height: 30px;
-                font-size: 18px;
             }
             
             .column-header {
-                font-size: 20px;
+                font-size: 18px;
             }
             
-            .character {
-                transform: scale(1.2);
+            .map-container {
+                width: 240px;
+            }
+            
+            .mini-map {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .stone-frame {
+                width: 240px;
+                height: 400px;
             }
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .customization-panel {
-                width: 95%;
-                height: 85%;
                 padding: 10px;
             }
             
             .feature-label {
-                font-size: 16px;
+                font-size: 14px;
             }
             
             .arrow-btn {
                 width: 30px;
                 height: 25px;
-                font-size: 16px;
-            }
-            
-            .mini-map {
-                width: 150px;
-                height: 150px;
             }
             
             .tutorial-box {
-                width: 90%;
-                font-size: 16px;
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .bottom-bar {
+                height: 40px;
             }
         }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <div class="customization-panel">
-            <div class="header">Welcome to RuneScape - Use the buttons below to design your player</div>
-            
-            <div class="left-panel">
-                <div class="column-header">Design</div>
+        <div class="main-interface">
+            <div class="customization-panel">
+                <div class="header">Welcome to RuneScape - Use the buttons below to design your player</div>
                 
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Head</span>
-                    <button class="arrow-btn">→</button>
+                <div class="left-panel">
+                    <div class="column-header">Design</div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Head</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Jaw</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Torso</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Arms</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Hands</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Legs</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Feet</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
                 </div>
                 
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Jaw</span>
-                    <button class="arrow-btn">→</button>
+                <div class="character-preview">
+                    <div class="character-model">
+                        <div class="character-image"></div>
+                        <!-- Fallback to simple character if image doesn't load -->
+                        <div class="character">
+                            <div class="character-head"></div>
+                            <div class="character-body"></div>
+                            <div class="character-legs"></div>
+                            <div class="character-feet"></div>
+                            <div class="character-arms left-arm"></div>
+                            <div class="character-arms right-arm"></div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Torso</span>
-                    <button class="arrow-btn">→</button>
+                <div class="right-panel">
+                    <div class="column-header">Colour</div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Hair</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Torso</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Legs</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Feet</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="arrow-btn">←</div>
+                        <span class="feature-label">Skin</span>
+                        <div class="arrow-btn">→</div>
+                    </div>
+                    
+                    <div class="column-header" style="margin-top: 20px;">Gender</div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="red-btn">Male</div>
+                        <div class="tan-btn">Female</div>
+                    </div>
                 </div>
                 
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Arms</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Hands</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Legs</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Feet</span>
-                    <button class="arrow-btn">→</button>
+                <div class="bottom-panel">
+                    <div class="green-btn">Accept</div>
                 </div>
             </div>
-            
-            <div class="character-preview">
-                <div class="character">
-                    <div class="character-head"></div>
-                    <div class="character-body"></div>
-                    <div class="character-legs"></div>
-                    <div class="character-feet"></div>
-                    <div class="character-arms left-arm"></div>
-                    <div class="character-arms right-arm"></div>
-                </div>
-            </div>
-            
-            <div class="right-panel">
-                <div class="column-header">Colour</div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Hair</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Torso</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Legs</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Feet</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="feature-row">
-                    <button class="arrow-btn">←</button>
-                    <span class="feature-label">Skin</span>
-                    <button class="arrow-btn">→</button>
-                </div>
-                
-                <div class="column-header" style="margin-top: 20px;">Gender</div>
-                <div style="display: flex; justify-content: space-between;">
-                    <div class="red-btn">Male</div>
-                    <div class="tan-btn">Female</div>
-                </div>
-            </div>
-            
-            <div class="bottom-panel">
-                <div class="green-btn">Accept</div>
-            </div>
-        </div>
 
-        <div class="map-container">
-            <div class="mini-map">
-                <div class="mini-map-content">
-                    <!-- Mini map content with the green map from Image 2 -->
+            <div class="map-container">
+                <div class="mini-map">
+                    <div class="mini-map-content">
+                        <!-- Mini map content with the green map from Image 1 -->
+                    </div>
+                </div>
+                <div class="stone-frame">
+                    <div class="frame-content">
+                        <!-- This is the empty stone-framed content area below the map -->
+                    </div>
+                    <div class="logout-frame">
+                        LOG OUT <span style="margin-left: 5px; font-size: 20px;">🔧</span>
+                    </div>
                 </div>
             </div>
-            <div class="stone-frame">
-                <div class="frame-content">
-                    <!-- This is the empty stone-framed content area below the map -->
-                </div>
-                <div class="logout-frame">
-                    LOG OUT <span style="margin-left: 5px; font-size: 20px;">🔧</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="tutorial-box">
-            <div style="color: blue; font-weight: bold; margin-bottom: 10px; font-size: 20px;">Getting started</div>
-            <div>To start the tutorial use your left mouse-button to click on the 'RuneScape Guide' in this room. He is indicated by a flashing yellow arrow above his head. If you can't see him, use your keyboard's arrow keys to rotate the view.</div>
-        </div>
+            <div class="tutorial-box">
+                <div style="color: blue; font-weight: bold; margin-bottom: 10px; font-size: 18px;">Getting started</div>
+                <div>To start the tutorial use your left mouse-button to click on the 'RuneScape Guide' in this room. He is indicated by a flashing yellow arrow above his head. If you can't see him, use your keyboard's arrow keys to rotate the view.</div>
+            </div>
 
-        <div class="bottom-bar">
-            <div style="display: flex; gap: 50px;">
-                <div class="chat-option">
-                    <div class="chat-label">Public chat</div>
-                    <div class="chat-status">On</div>
+            <div class="bottom-bar">
+                <div style="display: flex; gap: 30px;">
+                    <div class="chat-option">
+                        <div class="chat-label">Public chat</div>
+                        <div class="chat-status">On</div>
+                    </div>
+                    <div class="chat-option">
+                        <div class="chat-label">Private chat</div>
+                        <div class="chat-status">On</div>
+                    </div>
+                    <div class="chat-option">
+                        <div class="chat-label">Trade/duel</div>
+                        <div class="chat-status">On</div>
+                    </div>
                 </div>
                 <div class="chat-option">
-                    <div class="chat-label">Private chat</div>
-                    <div class="chat-status">On</div>
+                    <div class="chat-label">Report abuse</div>
                 </div>
-                <div class="chat-option">
-                    <div class="chat-label">Trade/duel</div>
-                    <div class="chat-status">On</div>
+                <div class="logout-btn">
+                    LOG OUT
+                    <span style="font-size: 20px;">🔧</span>
                 </div>
-            </div>
-            <div class="chat-option">
-                <div class="chat-label">Report abuse</div>
-            </div>
-            <div class="logout-btn">
-                LOG OUT
-                <span style="font-size: 24px;">🔑</span>
             </div>
         </div>
     </div>
 
     <script>
-        // Initialize the character customization system
         document.addEventListener('DOMContentLoaded', function() {
             console.log('RuneScape character creator loaded');
             
@@ -558,16 +626,27 @@
             
             maleButton.addEventListener('click', function() {
                 console.log('Male selected');
+                maleButton.style.backgroundColor = '#990000';
+                femaleButton.style.backgroundColor = '#887766';
             });
             
             femaleButton.addEventListener('click', function() {
                 console.log('Female selected');
+                femaleButton.style.backgroundColor = '#998877';
+                maleButton.style.backgroundColor = '#880000';
             });
             
             // Setup accept button
             const acceptButton = document.querySelector('.green-btn');
             acceptButton.addEventListener('click', function() {
                 console.log('Character accepted');
+                // Add visual feedback
+                acceptButton.style.transform = 'translateY(2px)';
+                acceptButton.style.boxShadow = '0 1px 0 #002200';
+                setTimeout(() => {
+                    acceptButton.style.transform = '';
+                    acceptButton.style.boxShadow = '0 3px 0 #002200';
+                }, 200);
             });
             
             // Responsive design adjustments
@@ -578,6 +657,9 @@
             
             window.addEventListener('resize', handleResize);
             handleResize();
+            
+            // You can replace placeholder URLs with actual game assets
+            // Example: document.querySelector('.character-image').style.backgroundImage = 'url("path/to/character.png")';
         });
     </script>
 </body>
