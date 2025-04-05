@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RuneScape Character Customization</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #333;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+        
+        .game-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: #222;
+            overflow: hidden;
+        }
+        
+        .customization-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(90%, 1200px);
+            height: 80%;
+            background-color: #3c3328;
+            border: 4px solid #000;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 10px;
+            padding: 20px;
+            z-index: 1;
+        }
+        
+        .header {
+            grid-column: 1 / 4;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffcc00;
+            text-shadow: 2px 2px 2px #000;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .left-panel, .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .character-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .feature-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .feature-label {
+            color: #ffcc00;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #000;
+            font-size: 22px;
+        }
+        
+        .arrow-btn {
+            width: 40px;
+            height: 35px;
+            background-color: #333;
+            border: 2px solid #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            user-select: none;
+        }
+        
+        .arrow-btn:hover {
+            background-color: #555;
+        }
+        
+        .column-header {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .bottom-panel {
+            grid-column: 1 / 4;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .green-btn {
+            background-color: #006400;
+            color: #00ff00;
+            border: 2px solid #000;
+            padding: 10px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .red-btn {
+            background-color: #8b0000;
+            color: #ff6666;
+            border: 2px solid #000;
+            padding: 10px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            width: 100px;
+        }
+        
+        .tan-btn {
+            background-color: #887766;
+            color: white;
+            border: 2px solid #000;
+            padding: 10px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            width: 100px;
+        }
+        
+        .map-container {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            width: 240px;
+            z-index: 2;
+        }
+        
+        .mini-map {
+            width: 200px;
+            height: 200px;
+            background-color: #000;
+            border: 3px solid #555;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+        
+        .mini-map-content {
+            width: 100%;
+            height: 100%;
+            background-color: #55aa55;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/api/placeholder/200/200');
+            background-size: cover;
+        }
+        
+        .stone-frame {
+            width: 240px;
+            height: 400px;
+            background-color: #5a5248;
+            border: 20px solid;
+            border-image: url('/api/placeholder/100/100') 30 round;
+            border-radius: 10px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            position: relative;
+            padding-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        .frame-content {
+            flex-grow: 1;
+            background-color: #5a4d40;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        
+        .logout-frame {
+            height: 40px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-top: 2px solid #000;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .tutorial-box {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(80%, 800px);
+            background-color: #f5f5dc;
+            border: 3px solid #8b4513;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Times New Roman', serif;
+            color: #000;
+            font-size: 18px;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .bottom-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 2;
+        }
+        
+        .chat-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .chat-label {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .chat-status {
+            color: #00ff00;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .logout-btn {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .character {
+            width: 200px;
+            height: 400px;
+            position: relative;
+            transform: scale(1.5);
+        }
+        
+        .character-head {
+            width: 30px;
+            height: 30px;
+            background-color: #ffcc99;
+            border-radius: 15px;
+            position: absolute;
+            top: 0;
+            left: 35px;
+        }
+        
+        .character-body {
+            width: 50px;
+            height: 60px;
+            background-color: #ffff00;
+            position: absolute;
+            top: 30px;
+            left: 25px;
+        }
+        
+        .character-legs {
+            width: 40px;
+            height: 80px;
+            background-color: #00aa00;
+            position: absolute;
+            top: 90px;
+            left: 30px;
+        }
+        
+        .character-feet {
+            width: 25px;
+            height: 15px;
+            background-color: #663300;
+            position: absolute;
+            top: 170px;
+            left: 37px;
+        }
+        
+        .character-arms {
+            width: 15px;
+            height: 60px;
+            background-color: #ffff00;
+            position: absolute;
+            top: 35px;
+        }
+        
+        .left-arm {
+            left: 10px;
+        }
+        
+        .right-arm {
+            left: 75px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .feature-label {
+                font-size: 18px;
+            }
+            
+            .arrow-btn {
+                width: 35px;
+                height: 30px;
+                font-size: 18px;
+            }
+            
+            .column-header {
+                font-size: 20px;
+            }
+            
+            .character {
+                transform: scale(1.2);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .customization-panel {
+                width: 95%;
+                height: 85%;
+                padding: 10px;
+            }
+            
+            .feature-label {
+                font-size: 16px;
+            }
+            
+            .arrow-btn {
+                width: 30px;
+                height: 25px;
+                font-size: 16px;
+            }
+            
+            .mini-map {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .tutorial-box {
+                width: 90%;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="customization-panel">
+            <div class="header">Welcome to RuneScape - Use the buttons below to design your player</div>
+            
+            <div class="left-panel">
+                <div class="column-header">Design</div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Head</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Jaw</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Torso</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Arms</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Hands</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Legs</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Feet</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+            </div>
+            
+            <div class="character-preview">
+                <div class="character">
+                    <div class="character-head"></div>
+                    <div class="character-body"></div>
+                    <div class="character-legs"></div>
+                    <div class="character-feet"></div>
+                    <div class="character-arms left-arm"></div>
+                    <div class="character-arms right-arm"></div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="column-header">Colour</div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Hair</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Torso</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Legs</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Feet</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="feature-row">
+                    <button class="arrow-btn">←</button>
+                    <span class="feature-label">Skin</span>
+                    <button class="arrow-btn">→</button>
+                </div>
+                
+                <div class="column-header" style="margin-top: 20px;">Gender</div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="red-btn">Male</div>
+                    <div class="tan-btn">Female</div>
+                </div>
+            </div>
+            
+            <div class="bottom-panel">
+                <div class="green-btn">Accept</div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div class="mini-map">
+                <div class="mini-map-content">
+                    <!-- Mini map content with the green map from Image 2 -->
+                </div>
+            </div>
+            <div class="stone-frame">
+                <div class="frame-content">
+                    <!-- This is the empty stone-framed content area below the map -->
+                </div>
+                <div class="logout-frame">
+                    LOG OUT <span style="margin-left: 5px; font-size: 20px;">🔧</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutorial-box">
+            <div style="color: blue; font-weight: bold; margin-bottom: 10px; font-size: 20px;">Getting started</div>
+            <div>To start the tutorial use your left mouse-button to click on the 'RuneScape Guide' in this room. He is indicated by a flashing yellow arrow above his head. If you can't see him, use your keyboard's arrow keys to rotate the view.</div>
+        </div>
+
+        <div class="bottom-bar">
+            <div style="display: flex; gap: 50px;">
+                <div class="chat-option">
+                    <div class="chat-label">Public chat</div>
+                    <div class="chat-status">On</div>
+                </div>
+                <div class="chat-option">
+                    <div class="chat-label">Private chat</div>
+                    <div class="chat-status">On</div>
+                </div>
+                <div class="chat-option">
+                    <div class="chat-label">Trade/duel</div>
+                    <div class="chat-status">On</div>
+                </div>
+            </div>
+            <div class="chat-option">
+                <div class="chat-label">Report abuse</div>
+            </div>
+            <div class="logout-btn">
+                LOG OUT
+                <span style="font-size: 24px;">🔑</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize the character customization system
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('RuneScape character creator loaded');
+            
+            // Setup arrow button click handlers
+            const arrowButtons = document.querySelectorAll('.arrow-btn');
+            arrowButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // This would handle cycling through options
+                    console.log('Arrow button clicked');
+                });
+            });
+            
+            // Setup gender button handlers
+            const maleButton = document.querySelector('.red-btn');
+            const femaleButton = document.querySelector('.tan-btn');
+            
+            maleButton.addEventListener('click', function() {
+                console.log('Male selected');
+            });
+            
+            femaleButton.addEventListener('click', function() {
+                console.log('Female selected');
+            });
+            
+            // Setup accept button
+            const acceptButton = document.querySelector('.green-btn');
+            acceptButton.addEventListener('click', function() {
+                console.log('Character accepted');
+            });
+            
+            // Responsive design adjustments
+            function handleResize() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+            }
+            
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        });
+    </script>
+</body>
+</html>
